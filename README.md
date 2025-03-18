@@ -37,7 +37,22 @@ uv run analysis/analysis_example.py
 ```
 
 However, for any more in-depth work, it is likely preferable to establish a
-dedicated virtual environment and suitable code structure.
+dedicated virtual environment and suitable code structure. Again, uv is
+recommended for this purpose.
+
+### Supporting Files
+
+For any additional/supporting files related to the project, particularly large
+binary objects which are not well suited to version controlling with git, it is
+advised to use the
+[`MechEng/Projects`](https://drive.google.com/drive/folders/1JMDxiVOYdyFlw4mHeVmPgAm4i6PGy05r?usp=drive_link)
+Google Drive folder.
+
+If following this pattern, please ensure to link the project level directory and
+any specific files from within the `README.md` file (and any other relevant
+files) of the project's GitHub repository.
+
+## Appendix
 
 ### Additional Notes
 
