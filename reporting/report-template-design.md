@@ -1,4 +1,4 @@
-# Project Design Report
+# Product Design Document
 
 | **Project:**      | Example Project Title |
 | ----------------- | --------------------- |
@@ -7,29 +7,69 @@
 
 ## Summary
 
-
-
 ## Brief
 
 ### Product Description
 
-### Requirements
+### Initial Requirements
+
+The product must:
+
+-
+-
 
 ### Constraints
 
+The product must:
 
+-
+-
 
-## Background Research
+## Research & Requirements Development
 
+### Key Topics
 
+### Consolidated Requirements
+
+#### Performance Requirements
+
+P1.
+
+P2.
+
+#### Electrical Requirements
+
+E1.
+
+E2.
+
+#### Mechanical Requirements
+
+M1.
+
+M2.
+
+#### Manufacturing Constraints
+
+F1.
+
+F2.
+
+#### Integration
+
+I1.
+
+I2.
 
 ## Concept Development
 
 ### Concept Exploration
 
+#### Concept 1
+
+#### Concept 2
+
 ### Concept Selection
-
-
 
 ## Design Development
 
@@ -41,15 +81,17 @@
 
 ### Cost Considerations
 
-
-
 ## Design Validation
 
 ### Analytical Methods
 
 ### FEA/CFD
 
+#### Methodology
 
+#### Mesh Convergence
+
+#### Results
 
 ## Conclusion
 
@@ -57,9 +99,13 @@
 
 ### Limitations
 
+#### Material Behaviour
+
+#### Analysis
+
+#### Manufacturing
+
 ### Further Work
-
-
 
 ## Appendices
 
@@ -71,5 +117,6 @@ Conducted on: YYYY-MM-DD
 
 Key outcomes:
 
-- 
+-
 
+## References
