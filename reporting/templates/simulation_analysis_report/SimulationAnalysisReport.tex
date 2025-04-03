@@ -2,19 +2,19 @@
 % DOCUMENT METADATA - TO BE FILLED BY USER
 % --------------------------------------------------------------------------------------
 % --- Project Identification ---
-\newcommand{\ProjectRef}{YYP0N}               % e.g., 25P01
-\newcommand{\ProjectTitle}{PROJECT TITLE}     % e.g., MORSE KEY
+\newcommand{\ProjectRef}{YYP0N}                           % e.g., 25P01
+\newcommand{\ProjectTitle}{PROJECT TITLE}                 % e.g., MORSE KEY
 
 % --- Report Identification ---
-\newcommand{\ReportRef}{R0N}                  % e.g., R02
-\newcommand{\ReportTitle}{TEST REPORT TITLE}  % e.g., EXPERIMENTAL DESIGN VALIDATION
-\newcommand{\DocVersion}{V0N}                 % e.g., V01
+\newcommand{\ReportRef}{R0N}                              % e.g., R02
+\newcommand{\ReportTitle}{REPORT TITLE}                   % e.g., COMPONENT CFD STUDY
+\newcommand{\DocVersion}{V0N}                             % e.g., V01
 
 % --- Authoring and Assets ---
-\newcommand{\AuthorName}{AUTHOR NAME}         % e.g., Your Name
-\newcommand{\ReleaseDate}{\today}             % Use \today or specify a date e.g., January 1, 2024
-\newcommand{\LogoPath}{./assets/logo.pdf}     % Path to your logo file (ensure ./assets/ exists or change path)
-\newcommand{\ReferenceFile}{TestReport.bib}   % Name of your BibTeX file (ensure this file exists)
+\newcommand{\AuthorName}{AUTHOR NAME}                     % e.g., Your Name
+\newcommand{\ReleaseDate}{\today}                         % Use \today or specify a date e.g., January 1, 2024
+\newcommand{\LogoPath}{./assets/logo.pdf}                 % Path to your logo file (ensure ./assets/ exists or change path)
+\newcommand{\ReferenceFile}{SimulationAnalysisReport.bib} % Name of your BibTeX file (ensure this file exists)
 % --------------------------------------------------------------------------------------
 % END DOCUMENT METADATA
 % --------------------------------------------------------------------------------------
@@ -24,8 +24,8 @@
 % DOCUMENT SETUP — GENERALLY TO BE LEFT UNCHANGED
 % --------------------------------------------------------------------------------------
 % Assemble shorthand
-\newcommand{\ProjectFullRef}{\ProjectRef{} \ProjectTitle{}}
-\newcommand{\ReportFullRef}{\ReportRef{}-\DocVersion{}}
+\newcommand{\ProjectFullRef}{\ProjectRef{} \ProjectTitle{}} % Kept for header/footer
+\newcommand{\ReportFullRef}{\ReportRef{}-\DocVersion{}}     % Kept for header/footer
 
 
 % Fonts
@@ -33,7 +33,7 @@
 
 \usepackage[utf8]{inputenc}
 \usepackage[OT1]{fontenc}
-\usepackage{ocr}      
+\usepackage{ocr}
 
 \usepackage{lmodern}
 \renewcommand*\familydefault{\sfdefault}
@@ -42,7 +42,7 @@
 \usepackage{sectsty}
 \sectionfont{\ocrfamily\Large}
 \subsectionfont{\ocrfamily\large}
-\subsubsectionfont{\ocrfamily\normalsize}
+\subsubsectionfont{\ocrfamily\normalsize} % Note: The new structure uses \subsection, not \subsubsection
 
 % Core packages
 \usepackage[english]{datetime2}
@@ -97,8 +97,8 @@
 \renewcommand{\headrulewidth}{0.4pt}
 \renewcommand{\footrulewidth}{0pt}
 \fancyfoot[C]{\thepage}
-\fancyhead[L]{\ocrfamily\small\ProjectFullRef}
-\fancyhead[R]{\ocrfamily\small\ReportFullRef}
+\fancyhead[L]{\ocrfamily\small\ProjectFullRef} % Uses ProjectRef and ProjectTitle
+\fancyhead[R]{\ocrfamily\small\ReportFullRef}  % Uses ReportRef and DocVersion
 \setlength{\headheight}{20pt}
 
 % Custom section style with horizontal lines
@@ -108,10 +108,14 @@
   \titlespacing*{\section}
   {0pt}{1.5em}{1em}
 
+% Adjusted title format for subsections to match sections visually (no number for subsection)
 \titleformat{\subsection}
   {\ocrfamily\large\bfseries}
-  {\thesubsection}{1em}{}
+  {\thesubsection}{1em}{} % Keeps numbering for subsections
+  \titlespacing*{\subsection}
+  {0pt}{1.25em}{0.75em} % Adjust spacing if needed
 
+% Note: \subsubsection format kept in case it's needed later
 \titleformat{\subsubsection}
   {\ocrfamily\normalsize\bfseries}
   {\thesubsubsection}{1em}{}
@@ -121,7 +125,7 @@
   \noindent
   \begin{minipage}[t]{0.65\textwidth}
     \vspace{-0.5cm}
-    {\ocrfamily\Large\bfseries TEST REPORT \par}
+    {\ocrfamily\Large\bfseries SIMULATION/ANALYSIS REPORT \par} 
   \end{minipage}%
   \begin{minipage}[t]{0.35\textwidth}
     \flushright{}
@@ -138,10 +142,10 @@
   \vspace{0.5em}
 
   \begin{tabular}{@{}ll@{\hspace{2cm}}ll@{}}
-    \ocrfamily\textbf{REPORT REF:}   & \ocrfamily \ReportRef &
-    \ocrfamily\textbf{AUTHOR:}    & \ocrfamily \AuthorName \\
+    \ocrfamily\textbf{REPORT REF:} & \ocrfamily \ReportRef &
+    \ocrfamily\textbf{AUTHOR:}     & \ocrfamily \AuthorName \\
 
-    \ocrfamily\textbf{VERSION:} & \ocrfamily \DocVersion &
+    \ocrfamily\textbf{VERSION:}    & \ocrfamily \DocVersion &
     \ocrfamily\textbf{DATE:}       & \ocrfamily \ReleaseDate \\
   \end{tabular}
 
@@ -149,7 +153,6 @@
   \hrule height 0.8pt
   \vspace{0.25cm}
 }
-
 
 % Create fullwidth table command (Note: not used by translated content, retained for consistency)
 \newenvironment{fullwidthtable}
@@ -172,61 +175,55 @@
 % END DOCUMENT SETUP
 % --------------------------------------------------------------------------------------
 
-
 % --------------------------------------------------------------------------------------
-% REPORT CONTENT
+% REPORT CONTENT - NEW STRUCTURE APPLIED
 % --------------------------------------------------------------------------------------
-% Replace the comments below with your actual content.
+% Replace the comments below with your actual content, following the new structure.
 
-\section{Summary}
-% TODO: Add summary content here.
-% Briefly describe the purpose and main findings of the report.
+\section{Summary \& Recommendations}
+% TODO: Provide a concise overview of the report's key findings and suggest actionable recommendations based on the analysis.
 
-Example reference \cite{hibbeler2016mechanics}...
+\section{Introduction \& Objectives}
+% TODO: Introduce the project context, state the purpose of the simulation/analysis, and list the specific objectives.
 
-\section{Objectives}
-% TODO: Add objectives content here.
-% List the specific goals of the work described in this report.
+\section{Background Research}
+% TODO: Summarise relevant prior work, theoretical concepts, or existing solutions that inform this report. Cite sources appropriately \cite{key}.
 
-\section{Equipment / Setup / Materials} % Renamed slightly for broader use
-% TODO: Add equipment/setup/materials content here.
-% Describe the tools, software, materials, or setup used.
-% You can include figures using the \includegraphics command within a figure environment:
-% \begin{figure}[H] % [H] forces placement here (requires float package)
-%   \centering
-%   \includegraphics[width=0.75\textwidth]{./path/to/your/image.png} % Adjust path and width
-%   \caption{Caption for your figure.}
-%   \label{fig:your-figure-label} % Label for cross-referencing (\autoref{fig:your-figure-label})
-% \end{figure}
-
-\section{Method / Procedure}
-% TODO: Add method/procedure content here.
-% Detail the steps taken to achieve the objectives. Use lists if appropriate:
-% \begin{enumerate}
-%   \item First step.
-%   \item Second step.
-% \end{enumerate}
-% Or
-% \begin{itemize}
-%   \item Bullet point 1.
-%   \item Bullet point 2.
-% \end{itemize}
+\section{Methodology}
+% TODO: Describe the approach, methods, models, tools, and parameters used for the simulation or analysis. Detail the steps taken.
 
 \section{Results}
-% TODO: Add results content here.
-% Present the findings of your work. Include data, tables, graphs, etc.
-% Example of referencing a figure: See \autoref{fig:your-figure-label}.
-% Example of referencing a citation: As shown by \cite{citation_key}.
+% TODO: Present the data and findings obtained from the simulation or analysis. Use figures, tables, and graphs as needed.
+% Example figure:
+% \begin{figure}[H]
+%   \centering
+%   \includegraphics[width=0.75\textwidth]{./path/to/your/image.png}
+%   \caption{Caption for your results figure.}
+%   \label{fig:results-example}
+% \end{figure}
 
-\section{Discussion} % Optional section, add if needed
-% TODO: Add discussion content here.
-% Interpret the results, discuss limitations, suggest implications or future work.
+\section{Analysis}
+% TODO: Interpret the results presented in the previous section. 
+% Discuss their significance, compare them to expectations or background research, and identify trends or patterns.
 
-\section{Conclusion} % Optional section, add if needed
-% TODO: Add conclusion content here.
-% Summarise the key outcomes in relation to the objectives.
+\section{Conclusion}
+% TODO: This section summarises the entire effort. The subsections provide specific details.
+
+\subsection{Summary}
+% TODO: Briefly reiterate the main conclusions drawn from the analysis in relation to the objectives.
+
+\subsection{Limitations}
+% TODO: Discuss any constraints, assumptions, or limitations of the methodology, data, or analysis conducted.
+
+\subsection{Further Work}
+% TODO: Suggest potential next steps, improvements, or future research directions based on the report's findings and limitations.
+
+\section{Appendices}
+% TODO: Include supplementary material here, such as detailed data tables, code snippets, or extended derivations.
+% Use \appendix command before appendix sections if desired for separate numbering (e.g., Appendix A).
 
 % --- REFERENCES SECTION ---
+% Kept from original template, assuming references are still needed.
 \section{References}
 % The bibliography will be printed here based on citations in the text
 % and the content of your .bib file (\ReferenceFile).
