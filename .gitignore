@@ -42,6 +42,7 @@
 *.xml
 *.xmpi
 *blx.bib
+*.bak*
 .bak 
 .mtc
 build/
