@@ -1,111 +1,84 @@
 // Shelf Bracket
 // This is a bracket that holds a shelf. It is made of aluminum and is designed to hold a force of 300 lbs. The bracket is 6 inches wide and the force is applied at the end of the shelf, 12 inches from the wall. The bracket has a factor of safety of 1.2. The legs of the bracket are 5 inches and 2 inches long. The thickness of the bracket is calculated from the constraints provided.
 
+// Set units
+@settings(defaultLengthUnit = in)
 
-// Define constants
+// Define parameters
 sigmaAllow = 35000 // psi (6061-T6 aluminum)
-width = 6
+width = 5.0
 p = 300 // Force on shelf - lbs
-factorOfSafety = 1.2 // FOS of 1.2
-shelfMountL = 5
-wallMountL = 2
-shelfDepth = 12 // Shelf is 12 inches in depth from the wall
-moment = shelfDepth * p // assume the force is applied at the end of the shelf to be conservative (lb-in)
+fos = 1.2 // Factor of safety of 1.2
+shelfMountLength = 5.0
+wallMountLength = 2.25
+shelfDepth = 12 // Shelf is 12 inches deep from the wall
+shelfMountingHoleDiameter = .50
+wallMountingHoleDiameter = .625
 
+// Calculated parameters
+moment = shelfDepth * p // assume the force is applied at the end of the shelf
+thickness = sqrt(moment * fos * 6 / (sigmaAllow * width)) // required thickness for two brackets to hold up the shelf
+bendRadius = 0.25
+extBendRadius = bendRadius + thickness
+filletRadius = .5
+shelfMountingHolePlacementOffset = shelfMountingHoleDiameter * 1.5
+wallMountingHolePlacementOffset = wallMountingHoleDiameter * 1.5
 
-filletRadius = .375
-extFilletRadius = .25
-mountingHoleDiameter = 0.5
+// Add checks to ensure bracket is possible. These make sure that there is adequate distance between holes and edges.
+assertGreaterThanOrEq(wallMountLength, wallMountingHoleDiameter * 3, "Holes not possible. Either decrease hole diameter or increase wallMountLength")
+assertGreaterThanOrEq(shelfMountLength, shelfMountingHoleDiameter * 5.5, "wallMountLength must be longer for hole sizes to work. Either decrease mounting hole diameters or increase shelfMountLength")
+assertGreaterThanOrEq(width, shelfMountingHoleDiameter * 5.5, "Holes not possible. Either decrease hole diameter or increase width")
+assertGreaterThanOrEq(width, wallMountingHoleDiameter * 5.5, "Holes not possible. Either decrease hole diameter or increase width")
 
-// Calculate required thickness of bracket
-thickness = sqrt(moment * factorOfSafety * 6 / (sigmaAllow * width)) // this is the calculation of two brackets holding up the shelf (inches)
-
-
-// Sketch the bracket body and fillet the inner and outer edges of the bend
-bracketLeg1Sketch = startSketchOn('XY')
+// Create the body of the bracket
+bracketBody = startSketchOn(XZ)
   |> startProfileAt([0, 0], %)
-  |> line([shelfMountL - filletRadius, 0], %, $fillet1)
-  |> line([0, width], %, $fillet2)
-  |> line([-shelfMountL + filletRadius, 0], %)
-  |> close(%)
-  |> hole(circle({
-       center = [1, 1],
-       radius = mountingHoleDiameter / 2
-     }, %), %)
-  |> hole(circle({
-       center = [shelfMountL - 1.5, width - 1],
-       radius = mountingHoleDiameter / 2
-     }, %), %)
-  |> hole(circle({
-       center = [1, width - 1],
-       radius = mountingHoleDiameter / 2
-     }, %), %)
-  |> hole(circle({
-       center = [shelfMountL - 1.5, 1],
-       radius = mountingHoleDiameter / 2
-     }, %), %)
+  |> xLine(length = shelfMountLength - thickness, tag = $seg01)
+  |> yLine(length = thickness, tag = $seg02)
+  |> xLine(length = -shelfMountLength, tag = $seg03)
+  |> yLine(length = -wallMountLength, tag = $seg04)
+  |> xLine(length = thickness, tag = $seg05)
+  |> line(endAbsolute = [profileStartX(%), profileStartY(%)], tag = $seg06)
+  |> close()
+  |> extrude(%, length = width)
 
-// Extrude the leg 2 bracket sketch
-bracketLeg1Extrude = extrude(thickness, bracketLeg1Sketch)
-  |> fillet({
-       radius = extFilletRadius,
-       tags = [
-         getNextAdjacentEdge(fillet1),
-         getNextAdjacentEdge(fillet2)
-       ]
-     }, %)
+// Add mounting holes to mount to the shelf
+shelfMountingHoles = startSketchOn(bracketBody, seg03)
+  |> circle(
+       center = [
+         -(bendRadius + shelfMountingHolePlacementOffset),
+         shelfMountingHolePlacementOffset
+       ],
+       radius = shelfMountingHoleDiameter / 2,
+     )
+  |> patternLinear2d(instances = 2, distance = -(extBendRadius + shelfMountingHolePlacementOffset) + shelfMountLength - shelfMountingHolePlacementOffset, axis = [-1, 0])
+  |> patternLinear2d(instances = 2, distance = width - (shelfMountingHolePlacementOffset * 2), axis = [0, 1])
+  |> extrude(%, length = -thickness - .01)
 
-// Sketch the fillet arc
-filletSketch = startSketchOn('XZ')
-  |> startProfileAt([0, 0], %)
-  |> line([0, thickness], %)
-  |> arc({
-       angleEnd = 180,
-       angleStart = 90,
-       radius = filletRadius + thickness
-     }, %)
-  |> line([thickness, 0], %)
-  |> arc({
-       angleEnd = 90,
-       angleStart = 180,
-       radius = filletRadius
-     }, %)
+// Add mounting holes to mount to the wall
+wallMountingHoles = startSketchOn(bracketBody, seg04)
+  |> circle(
+       center = [
+         wallMountLength - wallMountingHolePlacementOffset - bendRadius,
+         wallMountingHolePlacementOffset
+       ],
+       radius = wallMountingHoleDiameter / 2,
+     )
+  |> patternLinear2d(instances = 2, distance = width - (wallMountingHolePlacementOffset * 2), axis = [0, 1])
+  |> extrude(%, length = -thickness - 0.1)
 
-// Sketch the bend
-filletExtrude = extrude(-width, filletSketch)
+// Apply bends
+fillet(bracketBody, radius = extBendRadius, tags = [getNextAdjacentEdge(seg03)])
+fillet(bracketBody, radius = bendRadius, tags = [getNextAdjacentEdge(seg06)])
 
-// Create a custom plane for the leg that sits on the wall
-customPlane = {
-  plane = {
-    origin = { x = -filletRadius, y = 0, z = 0 },
-    xAxis = { x = 0, y = 1, z = 0 },
-    yAxis = { x = 0, y = 0, z = 1 },
-    zAxis = { x = 1, y = 0, z = 0 }
-  }
-}
-
-// Create a sketch for the second leg
-bracketLeg2Sketch = startSketchOn(customPlane)
-  |> startProfileAt([0, -filletRadius], %)
-  |> line([width, 0], %)
-  |> line([0, -wallMountL], %, $fillet3)
-  |> line([-width, 0], %, $fillet4)
-  |> close(%)
-  |> hole(circle({
-       center = [1, -1.5],
-       radius = mountingHoleDiameter / 2
-     }, %), %)
-  |> hole(circle({
-       center = [5, -1.5],
-       radius = mountingHoleDiameter / 2
-     }, %), %)
-
-// Extrude the second leg
-bracketLeg2Extrude = extrude(-thickness, bracketLeg2Sketch)
-  |> fillet({
-       radius = extFilletRadius,
-       tags = [
-         getNextAdjacentEdge(fillet3),
-         getNextAdjacentEdge(fillet4)
-       ]
-     }, %)
+// Apply corner fillets
+fillet(
+  bracketBody,
+  radius = filletRadius,
+  tags = [
+    seg02,
+    getOppositeEdge(seg02),
+    seg05,
+    getOppositeEdge(seg05)
+  ],
+)

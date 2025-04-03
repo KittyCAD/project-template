@@ -1,0 +1,232 @@
+% --------------------------------------------------------------------------------------
+% DOCUMENT METADATA - TO BE FILLED BY USER
+% --------------------------------------------------------------------------------------
+% --- Document Type ---
+\newcommand{\DocumentType}{SIMULATION/ANALYSIS REPORT}    % Often not necessary to change.
+
+% --- Project Identification ---
+\newcommand{\ProjectRef}{YYP0N}                           % e.g., 25P01
+\newcommand{\ProjectTitle}{PROJECT TITLE}                 % e.g., MORSE KEY
+
+% --- Report Identification ---
+\newcommand{\ReportRef}{R0N}                              % e.g., R02
+\newcommand{\ReportTitle}{REPORT TITLE}                   % e.g., COMPONENT CFD STUDY
+\newcommand{\DocVersion}{V0N}                             % e.g., V01
+
+% --- Authoring and Assets ---
+\newcommand{\AuthorName}{AUTHOR NAME}                     % e.g., Your Name
+\newcommand{\ReleaseDate}{\today}                         % Use \today or specify a date e.g., January 1, 2024
+\newcommand{\LogoPath}{./assets/logo.pdf}                 % Path to your logo file (ensure ./assets/ exists or change path)
+\newcommand{\ReferenceFile}{SimulationAnalysisReport.bib} % Name of your BibTeX file (ensure this file exists)
+% --------------------------------------------------------------------------------------
+% END DOCUMENT METADATA
+% --------------------------------------------------------------------------------------
+
+% --------------------------------------------------------------------------------------
+% DOCUMENT SETUP — GENERALLY TO BE LEFT UNCHANGED
+% --------------------------------------------------------------------------------------
+% Assemble shorthand
+\newcommand{\ProjectFullRef}{\ProjectRef{} \ProjectTitle{}}
+\newcommand{\ReportFullRef}{\ReportRef{}-\DocVersion{}}
+
+% Fonts
+\documentclass[10pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[OT1]{fontenc}
+\usepackage{ocr}
+
+\usepackage{lmodern}
+\renewcommand*\familydefault{\sfdefault}
+
+% Set sections to use OCR-A1
+\usepackage{sectsty}
+\sectionfont{\ocrfamily\Large}
+\subsectionfont{\ocrfamily\large}
+\subsubsectionfont{\ocrfamily\normalsize}
+
+% Core packages
+\usepackage[english]{datetime2}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{float}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{longtable}
+\usepackage{textcomp}
+\usepackage{titlesec}
+\usepackage{titling}
+\usepackage{xcolor}
+
+% Links
+\usepackage[colorlinks=true,
+            linkcolor=gray,
+            citecolor=gray,
+            urlcolor=gray
+           ]{hyperref}
+
+% Date
+\DTMsetdatestyle{iso}
+
+% Bibliography
+\usepackage[backend=bibtex, style=ieee, citestyle=numeric-comp]{biblatex}
+\addbibresource{\ReferenceFile}
+
+
+% Set narrow page margins
+\geometry{
+  paper=a4paper,
+  top=0.75in,
+  bottom=0.75in,
+  left=0.55in,
+  right=0.55in,
+  headsep=0.25in
+}
+
+% Remove paragraph indentation, add spacing between paragraphs
+\usepackage{parskip}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt}
+
+% Header/Footer setup
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyfoot[C]{\thepage}
+\fancyhead[L]{\ocrfamily\small\ProjectFullRef}
+\fancyhead[R]{\ocrfamily\small\ReportFullRef}
+\setlength{\headheight}{20pt}
+
+% Custom section style with horizontal lines
+\titleformat{\section}
+  {\ocrfamily\Large\bfseries}
+  {\thesection}{1em}{}
+  \titlespacing*{\section}
+  {0pt}{1.5em}{1em}
+
+\titleformat{\subsection}
+  {\ocrfamily\large\bfseries}
+  {\thesubsection}{1em}{}
+
+\titleformat{\subsubsection}
+  {\ocrfamily\normalsize\bfseries}
+  {\thesubsubsection}{1em}{}
+
+% Create a custom title command
+\newcommand{\customtitle}{%
+  \noindent
+  \begin{minipage}[t]{0.65\textwidth}
+    \vspace{-0.5cm}
+    {\ocrfamily\Large\bfseries \DocumentType \par}
+  \end{minipage}%
+  \begin{minipage}[t]{0.35\textwidth}
+    \flushright{}
+    \includegraphics[width=0.5\textwidth]{\LogoPath}
+  \end{minipage}
+
+  \vspace{0.3cm}
+  \hrule height 0.8pt
+  \vspace{0.3cm}
+
+  {\ocrfamily\bfseries\ProjectFullRef\par}
+  {\ocrfamily\large\bfseries\ReportTitle\par}
+
+  \vspace{0.5em}
+
+  \begin{tabular}{@{}ll@{\hspace{2cm}}ll@{}}
+    \ocrfamily\textbf{REPORT REF:} & \ocrfamily \ReportRef &
+    \ocrfamily\textbf{AUTHOR:}     & \ocrfamily \AuthorName \\
+
+    \ocrfamily\textbf{VERSION:}    & \ocrfamily \DocVersion &
+    \ocrfamily\textbf{DATE:}       & \ocrfamily \ReleaseDate \\
+  \end{tabular}
+
+  \vspace{0.3cm}
+  \hrule height 0.8pt
+  \vspace{0.25cm}
+}
+
+% Create fullwidth table command
+\newenvironment{fullwidthtable}
+  {\begin{center}
+   \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}ll@{}}}
+  {\end{tabular*}
+   \end{center}}
+
+
+% Fold URLs
+\usepackage{xurl}
+\setlength{\emergencystretch}{1em}
+
+\begin{document}
+\vspace*{-1cm}
+\thispagestyle{plain}
+\customtitle{}
+
+% --------------------------------------------------------------------------------------
+% END DOCUMENT SETUP
+% --------------------------------------------------------------------------------------
+
+% --------------------------------------------------------------------------------------
+% REPORT CONTENT - NEW STRUCTURE APPLIED
+% --------------------------------------------------------------------------------------
+% Replace the comments below with your actual content, following the new structure.
+
+\section{Summary \& Recommendations}
+% TODO: Provide a concise overview of the report's key findings and suggest actionable recommendations based on the analysis.
+
+\section{Introduction \& Objectives}
+% TODO: Introduce the project context, state the purpose of the simulation/analysis, and list the specific objectives.
+
+\section{Background Research}
+% TODO: Summarise relevant prior work, theoretical concepts, or existing solutions that inform this report. Cite sources appropriately \cite{key}.
+
+\section{Methodology}
+% TODO: Describe the approach, methods, models, tools, and parameters used for the simulation or analysis. Detail the steps taken.
+
+\section{Results}
+% TODO: Present the data and findings obtained from the simulation or analysis. Use figures, tables, and graphs as needed.
+% Example figure:
+% \begin{figure}[H]
+%   \centering
+%   \includegraphics[width=0.75\textwidth]{./path/to/your/image.png}
+%   \caption{Caption for your results figure.}
+%   \label{fig:results-example}
+% \end{figure}
+
+\section{Analysis}
+% TODO: Interpret the results presented in the previous section.
+% Discuss their significance, compare them to expectations or background research, and identify trends or patterns.
+
+\section{Conclusion}
+% TODO: This section summarises the entire effort. The subsections provide specific details.
+
+\subsection{Summary}
+% TODO: Briefly reiterate the main conclusions drawn from the analysis in relation to the objectives.
+
+\subsection{Limitations}
+% TODO: Discuss any constraints, assumptions, or limitations of the methodology, data, or analysis conducted.
+
+\subsection{Further Work}
+% TODO: Suggest potential next steps, improvements, or future research directions based on the report's findings and limitations.
+
+\section{Appendices}
+% TODO: Include supplementary material here, such as detailed data tables, code snippets, or extended derivations.
+% Use \appendix command before appendix sections if desired for separate numbering (e.g., Appendix A).
+
+% --- REFERENCES SECTION ---
+% Kept from original template, assuming references are still needed.
+\section{References}
+% The bibliography will be printed here based on citations in the text
+% and the content of your .bib file (\ReferenceFile).
+\printbibliography[heading=none] % 'heading=none' because we have \section{References}
+
+% --------------------------------------------------------------------------------------
+% END DOCUMENT BODY
+% --------------------------------------------------------------------------------------
+\end{document}

@@ -1,0 +1,361 @@
+% --------------------------------------------------------------------------------------
+% DOCUMENT METADATA - TO BE FILLED BY USER
+% --------------------------------------------------------------------------------------
+% --- Document Type ---
+\newcommand{\DocumentType}{PRODUCT DESIGN DOCUMENT}     % Often not necessary to change.
+
+% --- Project Identification ---
+\newcommand{\ProjectRef}{YYP0N}                         % e.g., 25P01
+\newcommand{\ProjectTitle}{PROJECT TITLE}               % e.g., MORSE KEY
+
+% --- Report Identification ---
+\newcommand{\ReportRef}{R0N}                            % e.g., R02
+\newcommand{\ReportTitle}{INITIAL DESIGN DOCUMENTATION} % e.g., INITIAL DESIGN DOCUMENTATION
+\newcommand{\DocVersion}{V0N}                           % e.g., V01
+
+% --- Authoring and Assets ---
+\newcommand{\AuthorName}{AUTHOR NAME}                   % e.g., Your Name
+\newcommand{\ReleaseDate}{\today}                       % Use \today or specify a date e.g., January 1, 2024
+\newcommand{\LogoPath}{./assets/logo.pdf}               % Path to your logo file (ensure ./assets/ exists or change path)
+\newcommand{\ReferenceFile}{DesignReport.bib}           % Name of your BibTeX file (ensure this file exists)
+% --------------------------------------------------------------------------------------
+% END DOCUMENT METADATA
+% --------------------------------------------------------------------------------------
+
+% --------------------------------------------------------------------------------------
+% DOCUMENT SETUP — GENERALLY TO BE LEFT UNCHANGED
+% --------------------------------------------------------------------------------------
+% Assemble shorthand
+\newcommand{\ProjectFullRef}{\ProjectRef{} \ProjectTitle{}}
+\newcommand{\ReportFullRef}{\ReportRef{}-\DocVersion{}}
+
+% Fonts
+\documentclass[10pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[OT1]{fontenc}
+\usepackage{ocr}
+
+\usepackage{lmodern}
+\renewcommand*\familydefault{\sfdefault}
+
+% Set sections to use OCR-A1
+\usepackage{sectsty}
+\sectionfont{\ocrfamily\Large}
+\subsectionfont{\ocrfamily\large}
+\subsubsectionfont{\ocrfamily\normalsize}
+
+% Core packages
+\usepackage[english]{datetime2}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{float}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{longtable}
+\usepackage{textcomp}
+\usepackage{titlesec}
+\usepackage{titling}
+\usepackage{xcolor}
+
+% Links
+\usepackage[colorlinks=true,
+            linkcolor=gray,
+            citecolor=gray,
+            urlcolor=gray
+           ]{hyperref}
+
+% Date
+\DTMsetdatestyle{iso}
+
+% Bibliography
+\usepackage[backend=bibtex, style=ieee, citestyle=numeric-comp]{biblatex}
+\addbibresource{\ReferenceFile}
+
+
+% Set narrow page margins
+\geometry{
+  paper=a4paper,
+  top=0.75in,
+  bottom=0.75in,
+  left=0.55in,
+  right=0.55in,
+  headsep=0.25in
+}
+
+% Remove paragraph indentation, add spacing between paragraphs
+\usepackage{parskip}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt}
+
+% Header/Footer setup
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyfoot[C]{\thepage}
+\fancyhead[L]{\ocrfamily\small\ProjectFullRef}
+\fancyhead[R]{\ocrfamily\small\ReportFullRef}
+\setlength{\headheight}{20pt}
+
+% Custom section style with horizontal lines
+\titleformat{\section}
+  {\ocrfamily\Large\bfseries}
+  {\thesection}{1em}{}
+  \titlespacing*{\section}
+  {0pt}{1.5em}{1em}
+
+\titleformat{\subsection}
+  {\ocrfamily\large\bfseries}
+  {\thesubsection}{1em}{}
+
+\titleformat{\subsubsection}
+  {\ocrfamily\normalsize\bfseries}
+  {\thesubsubsection}{1em}{}
+
+% Create a custom title command
+\newcommand{\customtitle}{%
+  \noindent
+  \begin{minipage}[t]{0.65\textwidth}
+    \vspace{-0.5cm}
+    {\ocrfamily\Large\bfseries \DocumentType \par}
+  \end{minipage}%
+  \begin{minipage}[t]{0.35\textwidth}
+    \flushright{}
+    \includegraphics[width=0.5\textwidth]{\LogoPath}
+  \end{minipage}
+
+  \vspace{0.3cm}
+  \hrule height 0.8pt
+  \vspace{0.3cm}
+
+  {\ocrfamily\bfseries\ProjectFullRef\par}
+  {\ocrfamily\large\bfseries\ReportTitle\par}
+
+  \vspace{0.5em}
+
+  \begin{tabular}{@{}ll@{\hspace{2cm}}ll@{}}
+    \ocrfamily\textbf{REPORT REF:} & \ocrfamily \ReportRef &
+    \ocrfamily\textbf{AUTHOR:}     & \ocrfamily \AuthorName \\
+
+    \ocrfamily\textbf{VERSION:}    & \ocrfamily \DocVersion &
+    \ocrfamily\textbf{DATE:}       & \ocrfamily \ReleaseDate \\
+  \end{tabular}
+
+  \vspace{0.3cm}
+  \hrule height 0.8pt
+  \vspace{0.25cm}
+}
+
+% Create fullwidth table command
+\newenvironment{fullwidthtable}
+  {\begin{center}
+   \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}ll@{}}}
+  {\end{tabular*}
+   \end{center}}
+
+
+% Fold URLs
+\usepackage{xurl}
+\setlength{\emergencystretch}{1em}
+
+\begin{document}
+\vspace*{-1cm}
+\thispagestyle{plain}
+\customtitle{}
+
+% --------------------------------------------------------------------------------------
+% REPORT CONTENT
+% --------------------------------------------------------------------------------------
+
+\section{Summary}
+% TODO: Add summary content here.
+% Briefly describe the purpose, key findings, and conclusions of the report.
+
+Example reference \cite{hibbeler2016mechanics}...
+
+\section{Brief}
+% TODO: Add content introducing the project brief.
+% Outlines the initial understanding of the project goals and context.
+
+\subsection{Product Description}
+% TODO: Add content describing the product.
+% A concise overview of the item or system being designed.
+
+\subsection{Initial Requirements}
+% TODO: Add content detailing the initial requirements.
+% List the primary functional and non-functional needs identified at the outset.
+The product must:
+\begin{itemize}[leftmargin=*] % Example bulleted list
+	\item % TODO: Add requirement
+\end{itemize}
+
+\subsection{Constraints}
+% TODO: Add content detailing the project constraints.
+% List limitations or boundaries affecting the design (e.g., cost, materials, regulations).
+The product must:
+\begin{itemize}[leftmargin=*] % Example bulleted list
+	\item % TODO: Add constraint
+\end{itemize}
+
+\section{Research \& Requirements Development}
+% TODO: Add content introducing the research phase.
+% Describes the background research undertaken and the resulting detailed requirements.
+
+\subsection{Key Topics}
+% TODO: Add content listing key research areas.
+% Identify the main subjects investigated (e.g., existing solutions, user needs, technology).
+
+\subsection{Consolidated Requirements}
+% TODO: Add content introducing the finalised requirements.
+% Presents the refined and categorised requirements derived from the brief and research.
+
+\subsubsection{Performance Requirements}
+% TODO: Define specific, measurable performance targets.
+P1. \\
+P2.
+
+\subsubsection{Electrical Requirements}
+% TODO: Define electrical specifications, interfaces, or standards.
+E1. \\
+E2.
+
+\subsubsection{Mechanical Requirements}
+% TODO: Define mechanical properties, loads, or geometric needs.
+M1. \\ % TODO: Add requirement text
+M2. % TODO: Add requirement text
+
+\subsubsection{Manufacturing Constraints}
+% TODO: Detail constraints related to production processes or capabilities.
+F1. \\ % TODO: Add requirement text
+F2. % TODO: Add requirement text
+
+\subsubsection{Integration}
+% TODO: Define requirements for interaction with other systems or components.
+I1. \\ % TODO: Add requirement text
+I2. % TODO: Add requirement text
+
+\section{Concept Development} \label{sec:concept-development}
+% TODO: Add content introducing the concept development phase.
+% Describes the exploration and selection of potential design solutions.
+
+\subsection{Concept Exploration}
+% TODO: Add content describing the concepts considered.
+% Detail the different design ideas or approaches investigated.
+
+\subsubsection{Concept 1}
+% TODO: Describe the first design concept.
+
+\subsubsection{Concept 2}
+% TODO: Describe the second design concept.
+
+% Example commented-out figure inclusion:
+% \begin{figure}[H] % [H] forces placement here (requires float package)
+%   \centering
+%   \includegraphics[width=0.75\textwidth]{./assets/concept_figure.png} % Adjust path and width
+%   \caption{Caption for concept figure.}
+%   \label{fig:concept-figure-label} % Label for cross-referencing (\autoref{fig:concept-figure-label})
+% \end{figure}
+
+\subsection{Concept Selection} \label{sec:concept-selection}
+% TODO: Explain the rationale for choosing the final concept.
+% Describe the evaluation process and justification for the selected design direction.
+
+\section{Design Development}
+% TODO: Add content introducing the detailed design phase.
+% Describes the process of refining the selected concept into a detailed specification.
+
+\subsection{Key Design Features}
+% TODO: Describe the important elements and characteristics of the final design.
+% Detail specific components, geometries, or functionalities.
+
+\subsection{Material Selection}
+% TODO: Justify the choice of materials for the design.
+% Explain why specific materials were selected based on requirements and properties.
+
+\subsection{Manufacturing \& Assembly Considerations}
+% TODO: Discuss how the design will be produced and put together.
+% Detail manufacturing processes, assembly steps, tolerances, and potential challenges.
+
+\subsection{Cost Considerations}
+% TODO: Analyse the cost implications of the design.
+% Discuss material costs, manufacturing expenses, and overall economic feasibility.
+
+\section{Design Validation}
+% TODO: Add content introducing the validation phase.
+% Describes the methods used to verify that the design meets requirements.
+
+\subsection{Analytical Methods}
+% TODO: Describe calculations or theoretical analysis performed.
+% Detail any hand calculations, spreadsheets, or analytical models used for validation.
+
+\subsection{FEA/CFD} % Or other simulation methods
+% TODO: Describe the simulation approach used.
+% Introduce the use of computational methods like Finite Element Analysis or Computational Fluid Dynamics.
+
+\subsubsection{Methodology}
+% TODO: Detail the setup of the simulation model.
+% Describe mesh, boundary conditions, loads, material models, and assumptions.
+
+\subsubsection{Mesh Convergence}
+% TODO: Describe the study ensuring mesh independence (if performed).
+% Explain how mesh density effects on results were assessed.
+
+\subsubsection{Results}
+% TODO: Present and interpret the simulation outcomes.
+% Show key results (e.g., stress, deformation, flow) and compare them to requirements or analytical predictions.
+
+\section{Conclusion}
+% TODO: Add content summarizing the report's findings.
+% Provides a final overview of the design process and outcomes.
+
+\subsection{Summary}
+% TODO: Briefly reiterate the main conclusions of the design process.
+% Restate the final design status and key performance indicators.
+
+\subsection{Limitations} \label{sec:limitations}
+% TODO: Identify the limitations of the current design or analysis.
+% Acknowledge assumptions, simplifications, or areas not fully addressed.
+
+\subsubsection{Material Behaviour}
+% TODO: List limitations related to material modeling or properties.
+
+\subsubsection{Analysis}
+% TODO: List limitations related to the analytical or simulation methods used.
+
+\subsubsection{Manufacturing}
+% TODO: List limitations related to manufacturing assumptions or processes.
+
+\subsection{Further Work}
+% TODO: Suggest potential next steps or areas for future development.
+% Recommend improvements, further testing, or refinements based on limitations or future goals.
+
+\section{Appendices}
+% TODO: Add supplementary information not essential to the main body.
+% Contains supporting data, detailed calculations, meeting minutes, etc.
+
+\subsection{Appendix A: Design Reviews} % TODO: Adjust Appendix title/content as needed
+% TODO: Detail the outcomes of design review meetings.
+
+\subsubsection{Design Review \#1}
+Conducted on: YYYY-MM-DD
+
+Key outcomes:
+\begin{itemize}[leftmargin=*]
+	\item % TODO: Add outcome
+	      %\item % TODO: Add outcome
+\end{itemize}
+
+\section{References}
+% TODO: List all cited works.
+% Bibliography is automatically generated here by \printbibliography.
+\printbibliography[heading=none] % 'heading=none' because we have \section{References}
+
+% --------------------------------------------------------------------------------------
+% END DOCUMENT BODY
+% --------------------------------------------------------------------------------------
+\end{document}
