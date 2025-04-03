@@ -1,6 +1,9 @@
 % --------------------------------------------------------------------------------------
 % DOCUMENT METADATA - TO BE FILLED BY USER
 % --------------------------------------------------------------------------------------
+% --- Document Type ---
+\newcommand{\DocumentType}{TEST REPORT}       % Often not necessary to change.
+
 % --- Project Identification ---
 \newcommand{\ProjectRef}{YYP0N}               % e.g., 25P01
 \newcommand{\ProjectTitle}{PROJECT TITLE}     % e.g., MORSE KEY
@@ -19,7 +22,6 @@
 % END DOCUMENT METADATA
 % --------------------------------------------------------------------------------------
 
-
 % --------------------------------------------------------------------------------------
 % DOCUMENT SETUP — GENERALLY TO BE LEFT UNCHANGED
 % --------------------------------------------------------------------------------------
@@ -27,13 +29,12 @@
 \newcommand{\ProjectFullRef}{\ProjectRef{} \ProjectTitle{}}
 \newcommand{\ReportFullRef}{\ReportRef{}-\DocVersion{}}
 
-
 % Fonts
 \documentclass[10pt]{article}
 
 \usepackage[utf8]{inputenc}
 \usepackage[OT1]{fontenc}
-\usepackage{ocr}      
+\usepackage{ocr}
 
 \usepackage{lmodern}
 \renewcommand*\familydefault{\sfdefault}
@@ -121,7 +122,7 @@
   \noindent
   \begin{minipage}[t]{0.65\textwidth}
     \vspace{-0.5cm}
-    {\ocrfamily\Large\bfseries TEST REPORT \par}
+    {\ocrfamily\Large\bfseries \DocumentType \par}
   \end{minipage}%
   \begin{minipage}[t]{0.35\textwidth}
     \flushright{}
@@ -138,10 +139,10 @@
   \vspace{0.5em}
 
   \begin{tabular}{@{}ll@{\hspace{2cm}}ll@{}}
-    \ocrfamily\textbf{REPORT REF:}   & \ocrfamily \ReportRef &
-    \ocrfamily\textbf{AUTHOR:}    & \ocrfamily \AuthorName \\
+    \ocrfamily\textbf{REPORT REF:} & \ocrfamily \ReportRef &
+    \ocrfamily\textbf{AUTHOR:}     & \ocrfamily \AuthorName \\
 
-    \ocrfamily\textbf{VERSION:} & \ocrfamily \DocVersion &
+    \ocrfamily\textbf{VERSION:}    & \ocrfamily \DocVersion &
     \ocrfamily\textbf{DATE:}       & \ocrfamily \ReleaseDate \\
   \end{tabular}
 
@@ -150,8 +151,7 @@
   \vspace{0.25cm}
 }
 
-
-% Create fullwidth table command (Note: not used by translated content, retained for consistency)
+% Create fullwidth table command
 \newenvironment{fullwidthtable}
   {\begin{center}
    \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}ll@{}}}
@@ -160,8 +160,8 @@
 
 
 % Fold URLs
-\usepackage{xurl}  % Allows URLs to break at any character
-\setlength{\emergencystretch}{1em}  % Adds extra stretch to avoid overfull boxes
+\usepackage{xurl}
+\setlength{\emergencystretch}{1em}
 
 \begin{document}
 \vspace*{-1cm}
@@ -184,7 +184,7 @@
 
 Example reference \cite{hibbeler2016mechanics}...
 
-\section{Objectives}
+\section{Introduction \& Objectives}
 % TODO: Add objectives content here.
 % List the specific goals of the work described in this report.
 
@@ -199,7 +199,7 @@ Example reference \cite{hibbeler2016mechanics}...
 %   \label{fig:your-figure-label} % Label for cross-referencing (\autoref{fig:your-figure-label})
 % \end{figure}
 
-\section{Method / Procedure}
+\section{Methodology / Procedure}
 % TODO: Add method/procedure content here.
 % Detail the steps taken to achieve the objectives. Use lists if appropriate:
 % \begin{enumerate}

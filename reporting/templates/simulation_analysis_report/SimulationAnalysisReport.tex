@@ -1,6 +1,9 @@
 % --------------------------------------------------------------------------------------
 % DOCUMENT METADATA - TO BE FILLED BY USER
 % --------------------------------------------------------------------------------------
+% --- Document Type ---
+\newcommand{\DocumentType}{SIMULATION/ANALYSIS REPORT}    % Often not necessary to change.
+
 % --- Project Identification ---
 \newcommand{\ProjectRef}{YYP0N}                           % e.g., 25P01
 \newcommand{\ProjectTitle}{PROJECT TITLE}                 % e.g., MORSE KEY
@@ -19,14 +22,12 @@
 % END DOCUMENT METADATA
 % --------------------------------------------------------------------------------------
 
-
 % --------------------------------------------------------------------------------------
 % DOCUMENT SETUP — GENERALLY TO BE LEFT UNCHANGED
 % --------------------------------------------------------------------------------------
 % Assemble shorthand
-\newcommand{\ProjectFullRef}{\ProjectRef{} \ProjectTitle{}} % Kept for header/footer
-\newcommand{\ReportFullRef}{\ReportRef{}-\DocVersion{}}     % Kept for header/footer
-
+\newcommand{\ProjectFullRef}{\ProjectRef{} \ProjectTitle{}}
+\newcommand{\ReportFullRef}{\ReportRef{}-\DocVersion{}}
 
 % Fonts
 \documentclass[10pt]{article}
@@ -42,7 +43,7 @@
 \usepackage{sectsty}
 \sectionfont{\ocrfamily\Large}
 \subsectionfont{\ocrfamily\large}
-\subsubsectionfont{\ocrfamily\normalsize} % Note: The new structure uses \subsection, not \subsubsection
+\subsubsectionfont{\ocrfamily\normalsize}
 
 % Core packages
 \usepackage[english]{datetime2}
@@ -97,8 +98,8 @@
 \renewcommand{\headrulewidth}{0.4pt}
 \renewcommand{\footrulewidth}{0pt}
 \fancyfoot[C]{\thepage}
-\fancyhead[L]{\ocrfamily\small\ProjectFullRef} % Uses ProjectRef and ProjectTitle
-\fancyhead[R]{\ocrfamily\small\ReportFullRef}  % Uses ReportRef and DocVersion
+\fancyhead[L]{\ocrfamily\small\ProjectFullRef}
+\fancyhead[R]{\ocrfamily\small\ReportFullRef}
 \setlength{\headheight}{20pt}
 
 % Custom section style with horizontal lines
@@ -108,14 +109,10 @@
   \titlespacing*{\section}
   {0pt}{1.5em}{1em}
 
-% Adjusted title format for subsections to match sections visually (no number for subsection)
 \titleformat{\subsection}
   {\ocrfamily\large\bfseries}
-  {\thesubsection}{1em}{} % Keeps numbering for subsections
-  \titlespacing*{\subsection}
-  {0pt}{1.25em}{0.75em} % Adjust spacing if needed
+  {\thesubsection}{1em}{}
 
-% Note: \subsubsection format kept in case it's needed later
 \titleformat{\subsubsection}
   {\ocrfamily\normalsize\bfseries}
   {\thesubsubsection}{1em}{}
@@ -125,7 +122,7 @@
   \noindent
   \begin{minipage}[t]{0.65\textwidth}
     \vspace{-0.5cm}
-    {\ocrfamily\Large\bfseries SIMULATION/ANALYSIS REPORT \par} 
+    {\ocrfamily\Large\bfseries \DocumentType \par}
   \end{minipage}%
   \begin{minipage}[t]{0.35\textwidth}
     \flushright{}
@@ -154,7 +151,7 @@
   \vspace{0.25cm}
 }
 
-% Create fullwidth table command (Note: not used by translated content, retained for consistency)
+% Create fullwidth table command
 \newenvironment{fullwidthtable}
   {\begin{center}
    \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}ll@{}}}
@@ -163,8 +160,8 @@
 
 
 % Fold URLs
-\usepackage{xurl}  % Allows URLs to break at any character
-\setlength{\emergencystretch}{1em}  % Adds extra stretch to avoid overfull boxes
+\usepackage{xurl}
+\setlength{\emergencystretch}{1em}
 
 \begin{document}
 \vspace*{-1cm}
@@ -203,7 +200,7 @@
 % \end{figure}
 
 \section{Analysis}
-% TODO: Interpret the results presented in the previous section. 
+% TODO: Interpret the results presented in the previous section.
 % Discuss their significance, compare them to expectations or background research, and identify trends or patterns.
 
 \section{Conclusion}

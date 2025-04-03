@@ -1,6 +1,9 @@
 % --------------------------------------------------------------------------------------
 % DOCUMENT METADATA - TO BE FILLED BY USER
 % --------------------------------------------------------------------------------------
+% --- Document Type ---
+\newcommand{\DocumentType}{PRODUCT DESIGN DOCUMENT}     % Often not necessary to change.
+
 % --- Project Identification ---
 \newcommand{\ProjectRef}{YYP0N}                         % e.g., 25P01
 \newcommand{\ProjectTitle}{PROJECT TITLE}               % e.g., MORSE KEY
@@ -19,14 +22,12 @@
 % END DOCUMENT METADATA
 % --------------------------------------------------------------------------------------
 
-
 % --------------------------------------------------------------------------------------
 % DOCUMENT SETUP — GENERALLY TO BE LEFT UNCHANGED
 % --------------------------------------------------------------------------------------
 % Assemble shorthand
 \newcommand{\ProjectFullRef}{\ProjectRef{} \ProjectTitle{}}
 \newcommand{\ReportFullRef}{\ReportRef{}-\DocVersion{}}
-
 
 % Fonts
 \documentclass[10pt]{article}
@@ -121,7 +122,7 @@
   \noindent
   \begin{minipage}[t]{0.65\textwidth}
     \vspace{-0.5cm}
-    {\ocrfamily\Large\bfseries DESIGN REPORT \par}
+    {\ocrfamily\Large\bfseries \DocumentType \par}
   \end{minipage}%
   \begin{minipage}[t]{0.35\textwidth}
     \flushright{}
@@ -150,7 +151,6 @@
   \vspace{0.25cm}
 }
 
-
 % Create fullwidth table command
 \newenvironment{fullwidthtable}
   {\begin{center}
@@ -162,11 +162,6 @@
 % Fold URLs
 \usepackage{xurl}
 \setlength{\emergencystretch}{1em}
-
-% --------------------------------------------------------------------------------------
-% END DOCUMENT SETUP
-% --------------------------------------------------------------------------------------
-
 
 \begin{document}
 \vspace*{-1cm}
